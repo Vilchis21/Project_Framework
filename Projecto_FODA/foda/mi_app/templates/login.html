@@ -1,0 +1,70 @@
+<!-- base.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Inicio de Sesion</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      padding-top: 50px;
+    }
+
+    .login-container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-container h1 {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .login-container .form-group {
+      margin-bottom: 20px;
+    }
+
+    .login-container label {
+      font-weight: bold;
+    }
+
+    .login-container .btn-primary {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  {% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="login-container">
+        <h1>Iniciar sesión</h1>
+        {% if error_message %}
+          <div class="alert alert-danger">{{ error_message }}</div>
+        {% endif %}
+        <form method="post">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="username">Usuario:</label>
+            <input type="text" id="username" name="username" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" class="form-control" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+        </form>
+        <div class="text-center">
+          <p>¿No tienes una cuenta? <a href="{% url 'register' %}" class="btn btn-link">Registrar Usuario</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
